@@ -1,0 +1,277 @@
+import java.util.Scanner;
+class menu 
+{
+    static int arr[]=new int[100];
+	static int noe=0,value,i,j,index,search,loc,temp;
+	public static int partion(int start,int end)
+	{
+		j=start;
+		int pivot=arr[end];
+		for(i=start;i<end;i++)
+		{
+			if(pivot<arr[i])
+			{
+				temp=arr[i];
+				arr[i]=arr[j];
+				arr[j]=temp;
+				j++;
+			}
+		}
+		temp=arr[j];
+		arr[j]=arr[end];
+		arr[end]=temp;
+        return j;
+	}
+	public static void quicksort(int start,int end)
+	{
+		if(start<end)
+		{
+			int index=partion(start,end);
+			quicksort(start,index-1);
+			quicksort(index+1,end);
+		}
+	}
+	public static void insertionsort()
+	{
+       for(i=1;i<noe;i++)
+		{
+		   int next=arr[i];
+           j=i-1;
+		   while(j>=0 && arr[j]>next)
+			{
+			   arr[j+1]=arr[j];
+			   j--;
+			}
+			arr[j+1]=next;
+		}
+	}
+	public static void selectionsort()
+	{
+		for(i=0;i<noe;i++)
+		{
+			int max=arr[i];
+			for(j=i+1;j<noe;j++)
+			{
+				if(max<arr[j])
+				{
+					max=arr[j];
+					loc=j;
+				}
+			}
+			if(arr[i]<max)
+			{
+			temp=arr[i];
+			arr[i]=arr[loc];
+			arr[loc]=temp;
+			}
+		}
+	}
+	public static void bubblesort()
+	{
+		for(i=0;i<noe-1;i++)
+		{
+			for(j=0;j<noe-1;j++)
+			{
+				if(arr[j]>arr[j+1])
+				{
+					temp=arr[j];
+					arr[j]=arr[j+1];
+					arr[j+1]=temp;
+				}
+			}
+		}
+	}
+    public static void deleteall(int search)
+	{
+		for(i=noe;i>=0;i--)
+		{
+			if(search==arr[i])
+			{
+               loc=i;
+			   for(j=loc;j<=noe;j++)
+				{
+				   arr[j]=arr[j+1];
+				}
+				noe--;
+				i=-1;
+			}
+		}
+	}
+    public static void deletelast(int search)
+	{
+		for(i=noe;i>=0;i--)
+		{
+			if(search==arr[i])
+			{
+               loc=i;
+			   for(j=loc;j<=noe;j++)
+				{
+				   arr[j]=arr[j+1];
+				}
+				noe--;
+				break;
+			}
+		}
+	}
+	public static void deletefirst(int search)
+	{
+		for(i=0;i<noe;i++)
+		{
+			if(search==arr[i])
+			{
+               loc=i;
+			   for(j=loc;j<=noe;j++)
+				{
+				   arr[j]=arr[j+1];
+				}
+				noe--;
+				break;
+			}
+		}
+	}
+	public static void insertindex()
+	{
+		Scanner s=new Scanner(System.in);
+		System.out.println("enter index to insert value");
+		index=s.nextInt();
+		System.out.println("enter value");
+		value=s.nextInt();
+		for(i=noe;i>index;i--)
+		{
+			arr[i]=arr[i-1];
+		}
+		noe++;
+        arr[index]=value;
+	}
+    public static void insertfirst()
+
+	{
+		System.out.println("\nnoe : " + noe);
+		System.out.println("enter value to insert");
+		Scanner s=new Scanner(System.in);
+		value=s.nextInt();
+		for(i=noe;i>0;i--)
+		{
+			arr[i]=arr[i-1];
+		}
+		noe++;
+		arr[0]=value;
+	}
+    public static void insertlast()
+	{
+		System.out.println("enter value to insert");
+		Scanner s=new Scanner(System.in);
+		value=s.nextInt();
+		arr[noe]=value;
+		noe++;
+	}
+	public static void display()
+	{
+		for(i=0;i<noe;i++)
+		{
+			System.out.print(arr[i]+"\t");
+		}
+	}
+	public static void menu()
+	{
+		int opt;
+		System.out.println("1.insertion at last index");
+		System.out.println("2.insertion at first index");
+		System.out.println("3.insertion at specific index");
+		System.out.println("4.delete first occurance element");
+		System.out.println("5.delete last occurance element");
+		System.out.println("6.delete at specific index");
+		System.out.println("7.bubble sort");
+		System.out.println("8.selection sort");
+		System.out.println("9.insertion sort");
+		System.out.println("10.quick sort");
+		do
+		{
+		   Scanner s=new Scanner(System.in);
+		   System.out.println("\n enter option");
+		   opt=s.nextInt();
+		   if(opt==1)
+			{
+			   insertlast();
+			   display();
+			}
+			else if(opt==2)
+			{
+				insertfirst();
+				display();
+			}
+			else if(opt==3)
+			{
+				insertindex();
+				display();
+			}
+			else if(opt==4)
+			{
+				System.out.println("enter search element");
+				search=s.nextInt();
+				deletefirst(search);
+				if(loc!=-1)
+		        {
+			      display();
+		        }
+		        else
+		        {
+			      System.out.println("element does'nt exists in array");
+		        }
+			}
+			else if(opt==5)
+			{
+				System.out.println("enter search element");
+				search=s.nextInt();
+				deletelast(search);
+				if(loc!=-1)
+		        {
+			      display();
+		        }
+		        else
+		        {
+			      System.out.println("element does'nt exists in array");
+		        }
+			}
+			else if(opt==6)
+			{
+                System.out.println("enter search element");
+				search=s.nextInt();
+				deleteall(search);
+				if(loc!=-1)
+		        {
+			      display();
+		        }
+		        else
+		        {
+			      System.out.println("element does'nt exists in array");
+		        }
+			}
+			else if(opt==7)
+			{
+				bubblesort();
+				display();
+			}
+			else if(opt==8)
+			{
+				selectionsort();
+				display();
+			}
+			else if(opt==9)
+			{
+				insertionsort();
+				display();
+			}
+			else if(opt==10)
+			{
+				quicksort(0,noe-1);
+				display();
+			}
+		}
+		while (opt!=0);
+	}
+	public static void main(String[] args) 
+	{
+		menu();
+	}
+};
