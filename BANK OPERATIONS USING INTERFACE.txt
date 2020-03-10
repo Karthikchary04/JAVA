@@ -1,0 +1,175 @@
+package interview_tasks;
+public interface Sbi 
+{
+	public static final long acno=7095177349l;
+	public double withDraw(double acbal,int amt);
+	public double deposit(int amt);
+	public void validate(int pin);
+	public double amount(double acbal,int amt);
+}
+====================================================================================================
+package interview_tasks;
+public class SbiBankClass
+{
+	public static void main(String[] args)
+	{
+		SbiBank b=new SbiBank();
+        b.validate(6958);
+	}
+}
+=========================================================================================================
+package interview_tasks;
+import java.util.Scanner;
+public class SbiBank implements Sbi
+{
+   public void validate(int pin)
+   {
+	   int pcount=1,epin=1;
+	   while(pcount<=3)
+	   {
+		 System.out.println("enter pin");
+	     Scanner s=new Scanner(System.in);
+		 epin=s.nextInt();
+	   if(pin==epin)
+	   {
+		  options();
+	   }
+	   else
+	   { 
+		   pcount++;
+		   System.out.println("invalid pin try again");
+	   }
+	   }
+	   System.out.println("you have entered wrong pin 3 times");
+   }
+   public double deposit(int amt)
+   {
+	   double acbal=0;
+	   acbal+=amt;
+	   return acbal;
+   }
+   public double withDraw(double acbal,int amt)
+   {
+            int a2000=0,b500=0,c100=0;
+			Scanner s=new Scanner(System.in);
+			int rem=0,decision=0,temp,wcount=0;
+			temp=amt;
+			if(amt<=acbal)
+			{
+			if(amt%100==0)
+			{
+				if(amt>=2000)
+				{
+					a2000=amt/2000;
+					amt=amt-(a2000*2000);
+				}
+				 if(amt>=500)
+				{
+					b500=amt/500;
+					amt=amt-(b500*500);
+				}
+				 if(amt>=100)
+				{
+					c100=amt/100;
+				}
+				amt=temp;
+				acbal=acbal-amt;
+			}
+			else
+			{
+				rem=amt%100;
+				if(rem<50)
+				{
+					amt=amt-rem;
+					System.out.println(amt);
+					System.out.println("enter option 1 or 2");
+					decision=s.nextInt();
+					if(decision==1)
+					{
+						acbal=amount(acbal,amt);
+					}
+					else
+					{
+						System.out.println("enter valid amount");
+						amt=s.nextInt();
+					  acbal=amount(acbal,amt);
+					}
+				}
+				else
+				{
+					rem=amt%100;
+					amt=(amt-rem)+100;
+					System.out.println(amt);
+					System.out.println("enter option 1 or 2");
+					decision=s.nextInt();
+						if(decision==1)
+					{
+						acbal=amount(acbal,amt);
+					}
+					else
+					{
+						System.out.println("enter valid amount");
+						amt=s.nextInt();
+						acbal=amount(acbal,amt);
+					}
+			    	}
+		    	}
+	    	 }
+			return acbal;
+         }
+public double amount(double acbal,int amt)
+{
+	      
+			int temp=0,a2000=0,b500=0,c100=0;
+						temp=amt;
+					if(amt<=acbal)
+					{
+					if(amt%100==0)
+					{
+						if(amt>=2000)
+						{
+							a2000=amt/2000;
+							amt=amt-(a2000*2000);
+						}
+						 if(amt>=500)
+						{
+							b500=amt/500;
+							amt=amt-(b500*500);
+						}
+						 if(amt>=100)
+						{
+							c100=amt/100;
+						}
+						amt=temp;
+						acbal=acbal-amt;
+					}
+				}
+					return acbal;
+  }
+private void options()
+{
+	int opt=0,amt=0;
+	double bal=0;
+	Scanner s=new Scanner(System.in);
+	System.out.println("1.deposit \n 2.withdraw");
+	do
+	{
+		System.out.println("enter option");
+		opt=s.nextInt();
+		switch(opt)
+		{
+		case 1:
+			System.out.println("enter amount to deposit");
+			amt=s.nextInt();
+			bal=deposit(amt);
+			break;
+		case 2:
+			System.out.println("enter amount to withdraw");
+			amt=s.nextInt();
+			withDraw(bal,amt);
+		}
+	}
+	while(opt!=0);
+}
+}
+==========================================================================================================
