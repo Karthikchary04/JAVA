@@ -1,29 +1,28 @@
 package stringPrograms;
-
 import java.util.Scanner;
-
-public class StringFirstOccur
+public class StingOccur
 {
-	public void FirstOccur()
-	{
+    public void FirstOccur()
+    {
+    	int character=0;
     	Scanner s=new Scanner(System.in);
     	System.out.println("enter string");
     	String str=s.nextLine();
     	System.out.println("enter character");
     	char ch=s.nextLine().charAt(0);
-    	for(int i=str.length()-1;i>=0;i--)
+    	for(int i=0;i<str.length();i++)
     	{
-    		if(ch==str.charAt(i))
+    		if(ch==str.charAt(i) || ch-32==str.charAt(i))
     		{
-    	    	System.out.println(i);
-    	    	break;
+    			character++;
     		}
     	}
-	}
+    	System.out.println(character);
+    	
+   }
 	public static void main(String[] args) 
 	{
-       StringFirstOccur s=new StringFirstOccur();
-       s.FirstOccur();
+        StingOccur s=new StingOccur();
+        s.FirstOccur();
 	}
-
 }

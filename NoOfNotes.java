@@ -1,4 +1,4 @@
-package KARTHIK;
+package stringPrograms;
 import java.util.Scanner;
 public class NoOfNotes 
 {

@@ -1,10 +1,8 @@
 package stringPrograms;
-
 import java.util.Scanner;
-
-public class StringFirstOccur
+public class StringLastOccur
 {
-	public void FirstOccur()
+	public void LastOccur()
 	{
     	Scanner s=new Scanner(System.in);
     	System.out.println("enter string");
@@ -22,8 +20,7 @@ public class StringFirstOccur
 	}
 	public static void main(String[] args) 
 	{
-       StringFirstOccur s=new StringFirstOccur();
-       s.FirstOccur();
+       StringLastOccur s=new StringLastOccur();
+       s.LastOccur();
 	}
-
 }
